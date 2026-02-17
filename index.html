@@ -1000,7 +1000,7 @@ body {
   <!-- ==================== REPORT SCREEN ==================== -->
   <div class="report-screen" id="reportScreen">
     <div class="report-actions">
-      <button class="btn-primary" onclick="window.print()">인쇄 / PDF 저장</button>
+      <button class="btn-primary" onclick="downloadPDF()">PDF 다운로드</button>
       <button class="btn-secondary" onclick="restartAnalysis()">다시 분석하기</button>
     </div>
     <div class="report-container" id="reportContainer">
@@ -1010,6 +1010,7 @@ body {
 
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <script>
 // ===== STATE =====
 let currentStep = 0; // 0 = intro
@@ -1732,6 +1733,34 @@ function restartAnalysis() {
   currentStep = 0;
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+// ===== PDF DOWNLOAD =====
+function downloadPDF() {
+  const element = document.getElementById('reportContainer');
+  const today = new Date().toISOString().slice(0,10);
+  const opt = {
+    margin: [10, 10, 10, 10],
+    filename: 'AI기본법_분석리포트_' + today + '.pdf',
+    image: { type: 'jpeg', quality: 0.95 },
+    html2canvas: { scale: 2, useCORS: true, scrollY: 0 },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+    pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+  };
+  // Show loading state
+  const btn = event.target;
+  const origText = btn.textContent;
+  btn.textContent = 'PDF 생성 중...';
+  btn.disabled = true;
+  html2pdf().set(opt).from(element).save().then(function() {
+    btn.textContent = origText;
+    btn.disabled = false;
+  }).catch(function() {
+    btn.textContent = origText;
+    btn.disabled = false;
+    // Fallback to print
+    window.print();
+  });
+}
+
 // ===== IFRAME AUTO-RESIZE =====
 // Sends current document height to parent window so the iframe can auto-resize
 function notifyParentHeight() {
