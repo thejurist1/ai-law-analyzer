@@ -1732,6 +1732,22 @@ function restartAnalysis() {
   currentStep = 0;
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+// ===== IFRAME AUTO-RESIZE =====
+// Sends current document height to parent window so the iframe can auto-resize
+function notifyParentHeight() {
+  const height = document.documentElement.scrollHeight;
+  window.parent.postMessage({ type: 'resize', height: height }, '*');
+}
+// Notify on load, after transitions, and on resize
+window.addEventListener('load', () => setTimeout(notifyParentHeight, 100));
+window.addEventListener('resize', notifyParentHeight);
+// Also notify whenever step changes or report is generated
+const _origShowStep = showStep;
+showStep = function(n) { _origShowStep(n); setTimeout(notifyParentHeight, 500); };
+const _origRenderReport = renderReport;
+renderReport = function(html) { _origRenderReport(html); setTimeout(notifyParentHeight, 500); };
+const _origRestartAnalysis = restartAnalysis;
+restartAnalysis = function() { _origRestartAnalysis(); setTimeout(notifyParentHeight, 500); };
 </script>
 </body>
 </html>
