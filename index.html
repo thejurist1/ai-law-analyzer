@@ -459,18 +459,21 @@ body {
   overflow: hidden;
 }
 .report-header-band {
-  background: linear-gradient(135deg, var(--navy), var(--navy-light));
-  padding: 32px;
-  color: var(--white);
+  background: var(--white);
+  padding: 40px 32px 32px;
+  color: var(--text);
   text-align: center;
+  border-bottom: 2px solid var(--gold);
 }
 .report-header-band h1 {
   font-family: 'Noto Serif KR', serif;
   font-size: 24px;
-  margin-bottom: 6px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
 }
 .report-header-band .report-date {
-  color: var(--gold-light);
+  color: var(--text-secondary);
   font-size: 13px;
 }
 .report-body {
@@ -483,7 +486,7 @@ body {
   font-family: 'Noto Serif KR', serif;
   font-size: 18px;
   font-weight: 600;
-  color: var(--navy);
+  color: var(--text);
   padding-bottom: 10px;
   border-bottom: 2px solid var(--gold);
   margin-bottom: 18px;
@@ -494,7 +497,7 @@ body {
 .report-subsection-title {
   font-size: 15px;
   font-weight: 600;
-  color: var(--navy-light);
+  color: var(--text);
   margin-bottom: 8px;
 }
 .report-text {
@@ -527,7 +530,7 @@ body {
 .report-obligation-card h4 {
   font-size: 14px;
   font-weight: 700;
-  color: var(--navy);
+  color: var(--text);
   margin-bottom: 6px;
 }
 .report-obligation-card .ob-basis {
@@ -595,7 +598,7 @@ body {
 .report-recommend-item h5 {
   font-size: 13px;
   font-weight: 600;
-  color: var(--navy);
+  color: var(--text);
   margin-bottom: 6px;
 }
 .report-recommend-item p {
@@ -605,33 +608,34 @@ body {
 }
 
 .report-footer {
-  background: var(--navy);
+  background: #f8f9fa;
   padding: 28px 32px;
   text-align: center;
+  border-top: 1px solid var(--border-light);
 }
 .report-footer .attorney-name {
   font-family: 'Noto Serif KR', serif;
   font-size: 18px;
   font-weight: 600;
-  color: var(--gold-light);
+  color: var(--text);
   margin-bottom: 10px;
 }
 .report-footer .attorney-info {
   font-size: 13px;
-  color: rgba(255,255,255,0.7);
+  color: var(--text-secondary);
   line-height: 1.8;
 }
 .report-footer a {
-  color: var(--gold-light);
+  color: var(--info);
   text-decoration: none;
 }
 .report-footer a:hover { text-decoration: underline; }
 .report-footer .disclaimer-text {
   font-size: 11px;
-  color: rgba(255,255,255,0.5);
+  color: var(--text-secondary);
   margin-top: 16px;
   padding-top: 16px;
-  border-top: 1px solid rgba(255,255,255,0.1);
+  border-top: 1px solid var(--border-light);
 }
 
 /* ===== ANIMATIONS ===== */
@@ -656,7 +660,7 @@ body {
   .step-title { font-size: 18px; }
   .progress-step .step-label { font-size: 9px; }
   .report-body { padding: 20px 16px; }
-  .report-header-band { padding: 24px 16px; }
+  .report-header-band { padding: 32px 16px 24px; }
   .report-header-band h1 { font-size: 20px; }
   .report-actions { flex-direction: column; }
   .report-actions button { width: 100%; }
@@ -670,7 +674,7 @@ body {
   body { background: white; font-size: 12pt; }
   .container { max-width: 100%; padding: 0; }
   .report-body { padding: 20px; }
-  .report-header-band { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .report-header-band { padding: 32px 20px 24px; }
   .report-section-title { font-size: 16pt; }
   .report-text { font-size: 11pt; line-height: 1.7; }
   .report-obligation-card { break-inside: avoid; }
@@ -1009,7 +1013,7 @@ body {
   <!-- ==================== REPORT SCREEN ==================== -->
   <div class="report-screen" id="reportScreen">
     <div class="report-actions">
-      <button class="btn-primary" onclick="downloadPDF()">리포트 저장</button>
+      <button class="btn-primary" onclick="downloadPDF()">리포트 저장 / 인쇄</button>
       <button class="btn-secondary" onclick="restartAnalysis()">다시 분석하기</button>
     </div>
     <div class="report-container" id="reportContainer">
@@ -1750,14 +1754,14 @@ function downloadPDF() {
     + '*{margin:0;padding:0;box-sizing:border-box}'
     + 'body{font-family:"Noto Sans KR",sans-serif;background:#fff;color:#1e2a3a;line-height:1.7;padding:0;-webkit-font-smoothing:antialiased}'
     + '.report-container{max-width:800px;margin:0 auto;overflow:hidden}'
-    + '.report-header-band{background:linear-gradient(135deg,#0f1a2e,#1a2844);padding:32px;color:#fff;text-align:center}'
-    + '.report-header-band h1{font-family:"Noto Serif KR",serif;font-size:24px;margin-bottom:6px}'
-    + '.report-header-band .report-date{color:#e8c06a;font-size:13px}'
+    + '.report-header-band{background:#fff;padding:40px 32px 32px;color:#1e2a3a;text-align:center;border-bottom:2px solid #c9953c}'
+    + '.report-header-band h1{font-family:"Noto Serif KR",serif;font-size:24px;font-weight:700;color:#1e2a3a;margin-bottom:8px}'
+    + '.report-header-band .report-date{color:#5a6a7e;font-size:13px}'
     + '.report-body{padding:32px}'
     + '.report-section{margin-bottom:32px}'
-    + '.report-section-title{font-family:"Noto Serif KR",serif;font-size:18px;font-weight:600;color:#0f1a2e;padding-bottom:10px;border-bottom:2px solid #c9953c;margin-bottom:18px}'
+    + '.report-section-title{font-family:"Noto Serif KR",serif;font-size:18px;font-weight:600;color:#1e2a3a;padding-bottom:10px;border-bottom:2px solid #c9953c;margin-bottom:18px}'
     + '.report-subsection{margin-bottom:20px}'
-    + '.report-subsection-title{font-size:15px;font-weight:600;color:#1a2844;margin-bottom:8px}'
+    + '.report-subsection-title{font-size:15px;font-weight:600;color:#1e2a3a;margin-bottom:8px}'
     + '.report-text{font-size:14px;line-height:1.85;color:#1e2a3a;white-space:pre-line}'
     + '.report-badge{display:inline-block;padding:4px 14px;border-radius:20px;font-size:13px;font-weight:600;margin-bottom:12px}'
     + '.badge-green{background:#e8f5e9;color:#2a7d4f;border:1px solid #c8e6c9}'
@@ -1766,7 +1770,7 @@ function downloadPDF() {
     + '.badge-blue{background:#e3f2fd;color:#2471a3;border:1px solid #bbdefb}'
     + '.badge-gray{background:#f5f5f5;color:#5a6a7e;border:1px solid #e0e0e0}'
     + '.report-obligation-card{border:1px solid #e8ecf1;border-radius:8px;padding:20px;margin-bottom:16px;background:#fafbfc}'
-    + '.report-obligation-card h4{font-size:14px;font-weight:700;color:#0f1a2e;margin-bottom:6px}'
+    + '.report-obligation-card h4{font-size:14px;font-weight:700;color:#1e2a3a;margin-bottom:6px}'
     + '.report-obligation-card .ob-basis{font-size:12px;color:#2471a3;margin-bottom:10px}'
     + '.report-obligation-card .ob-content{font-size:13px;line-height:1.75;color:#1e2a3a}'
     + '.ob-status{margin-top:10px;font-size:12px;font-weight:600;padding:4px 10px;border-radius:4px;display:inline-block}'
@@ -1781,30 +1785,51 @@ function downloadPDF() {
     + '.warning-box{background:rgba(201,149,60,0.08);border-left:3px solid #b8860b;padding:14px 18px;border-radius:0 8px 8px 0;margin:16px 0;font-size:13px;line-height:1.7}'
     + '.report-support-box{background:rgba(36,113,163,0.05);border:1px solid rgba(36,113,163,0.15);border-radius:8px;padding:18px 20px;margin-bottom:14px;font-size:13px;line-height:1.75}'
     + '.report-recommend-item{padding:14px 18px;border:1px solid #e8ecf1;border-radius:8px;margin-bottom:10px;background:#fff}'
-    + '.report-recommend-item h5{font-size:13px;font-weight:600;color:#0f1a2e;margin-bottom:6px}'
+    + '.report-recommend-item h5{font-size:13px;font-weight:600;color:#1e2a3a;margin-bottom:6px}'
     + '.report-recommend-item p{font-size:13px;color:#1e2a3a;line-height:1.7}'
-    + '.report-footer{background:#0f1a2e;padding:28px 32px;text-align:center}'
-    + '.report-footer .attorney-name{font-family:"Noto Serif KR",serif;font-size:18px;font-weight:600;color:#e8c06a;margin-bottom:10px}'
-    + '.report-footer .attorney-info{font-size:13px;color:rgba(255,255,255,0.7);line-height:1.8}'
-    + '.report-footer a{color:#e8c06a;text-decoration:none}'
-    + '.report-footer .disclaimer-text{font-size:11px;color:rgba(255,255,255,0.5);margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.1)}'
-    + '.print-bar{position:sticky;top:0;z-index:999;text-align:center;padding:16px 20px;background:#f4f1eb;border-bottom:1px solid #d4dae3}'
+    + '.report-footer{background:#f8f9fa;padding:28px 32px;text-align:center;border-top:1px solid #e8ecf1}'
+    + '.report-footer .attorney-name{font-family:"Noto Serif KR",serif;font-size:18px;font-weight:600;color:#1e2a3a;margin-bottom:10px}'
+    + '.report-footer .attorney-info{font-size:13px;color:#5a6a7e;line-height:1.8}'
+    + '.report-footer a{color:#2471a3;text-decoration:none}'
+    + '.report-footer .disclaimer-text{font-size:11px;color:#5a6a7e;margin-top:16px;padding-top:16px;border-top:1px solid #e8ecf1}'
+    + '.print-bar{position:sticky;top:0;z-index:999;text-align:center;padding:16px 20px;background:#f8f9fa;border-bottom:1px solid #d4dae3;display:flex;justify-content:center;gap:12px}'
     + '.print-bar button{padding:12px 36px;font-size:15px;font-weight:600;border:none;border-radius:8px;cursor:pointer;font-family:"Noto Sans KR",sans-serif;background:#0f1a2e;color:#fff}'
-    + '@media print{.print-bar{display:none!important}.report-header-band,.report-footer,.badge-green,.badge-yellow,.badge-red,.badge-blue,.badge-gray,.ob-status-done,.ob-status-none{-webkit-print-color-adjust:exact;print-color-adjust:exact}.report-obligation-card{break-inside:avoid}}'
+    + '.print-bar .btn-download{background:#fff;color:#0f1a2e;border:1.5px solid #d4dae3}'
+    + '@media print{.print-bar{display:none!important}.badge-green,.badge-yellow,.badge-red,.badge-blue,.badge-gray,.ob-status-done,.ob-status-none{-webkit-print-color-adjust:exact;print-color-adjust:exact}.report-obligation-card{break-inside:avoid}}'
     + '</style></head><body>'
-    + '<div class="print-bar"><button onclick="window.print()">인쇄 / PDF 저장</button></div>'
+    + '<div class="print-bar">'
+    + '<button onclick="window.print()">인쇄 / PDF 저장</button>'
+    + '<button class="btn-download" onclick="downloadHTML()">HTML 파일 저장</button>'
+    + '</div>'
     + '<div class="report-container">' + reportHTML + '</div>'
+    + '<script>'
+    + 'function downloadHTML(){'
+    + 'var a=document.createElement("a");'
+    + 'a.href="data:text/html;charset=utf-8,"+encodeURIComponent(document.documentElement.outerHTML);'
+    + 'a.download="AI기본법_분석리포트.html";'
+    + 'document.body.appendChild(a);a.click();document.body.removeChild(a);'
+    + '}'
+    + '<\/script>'
     + '</body></html>';
 
-  var blob = new Blob([fullHTML], { type: 'text/html;charset=utf-8' });
-  var url = URL.createObjectURL(blob);
-  var a = document.createElement('a');
-  a.href = url;
-  a.download = 'AI기본법_분석리포트.html';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  setTimeout(function() { URL.revokeObjectURL(url); }, 10000);
+  // 새 창에서 열기 (iframe 안에서도 작동)
+  var w = window.open('', '_blank');
+  if (w) {
+    w.document.write(fullHTML);
+    w.document.close();
+  } else {
+    // 팝업 차단 시 fallback: blob 다운로드
+    var blob = new Blob([fullHTML], { type: 'text/html;charset=utf-8' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'AI기본법_분석리포트.html';
+    a.target = '_blank';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function() { URL.revokeObjectURL(url); }, 10000);
+  }
 }
 
 // ===== IFRAME AUTO-RESIZE =====
